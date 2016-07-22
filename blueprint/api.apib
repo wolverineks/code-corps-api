@@ -119,6 +119,72 @@ Exchange credentials for `access_token`.
 
 # Group Comments
 
+## Comment [/comments]
+
+### Create a comment [POST]
+
++ Request
+
+  + Attributes (Comment Create Request)
+
++ Headers
+
+  Authorization: Basic 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
+
++ Response 201 (application/vnd.api+json)
+
+  + Attributes (Comment Response)
+
++ Response 422 (application/vnd.api+json)
+
+  + Attributes (Unprocessable Entity Response)
+
+## Comment [/comments/{id}/]
+
+### Update a comment [PATCH]
+
++ Request
+
+  + Attributes (Comment Update Request)
+
++ Headers
+
+  Authorization: Basic 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
+
++ Response 201 (application/vnd.api+json)
+
+  + Attributes (Comment Response)
+
++ Response 422 (application/vnd.api+json)
+
+  + Attributes (Unprocessable Entity Response)
+
+## Comments [/comments]
+
+### List comments with specified ids [GET]
++ Request
+  + Attributes (Id Filter)
+
++ Headers
+
+  Authorization: Basic 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
+
++ Response 200 (application/vnd.api+json)
+
+  + Attributes (Comments Response)
+
+## Comments [/posts/:number/comments]
+
++ Headers
+
+  Authorization: Basic 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
+
++ Response 200 (application/vnd.api+json)
+
+  + Attributes (Comments Response)
+
+### List all comments for specified post [GET]
+
 # Group Github Repositories
 
 # Group Import Skill Failures
@@ -249,6 +315,90 @@ Exchange credentials for `access_token`.
 + categories
   + data(array[Category], required)
 
+## Comment (object)
++ markdown: `Markdown` (string)
++ body: `Body` (string)
++ state: `published` (enum[string])
+  + Default `published`
+  + Members
+    + `published`
+    + `edited`
++ edited_at: `2014-07-07T18:01:26.000Z` (string)
++ created_at: `2014-07-07T18:01:26.000Z` (string)
+
+## Comment Base (object)
++ markdown: `Markdown` (string, required)
+
+## Head For Comment (object)
++ id: `1` (string, required)
++ type: `comments` (string, required)
+
+## Head For Comment Create (object)
++ type: `comments`, (string, required)
+
+## Attributes For Comment (object)
++ attributes: (Comment, required)
+
+## Attributes For Comment Create Or Update (object)
++ attributes: (Comment Base, required)
+
+## Relationships For Comment (object)
++ relationships:
+  + include Related Posts
+  + include Related Users
+  + include Related Comment User Mentions
+
+## Relationships For Comment Create (object)
++ relationships: (Related Posts, required)
+
+## Comment Create Request (object)
++ include Head For Comment Create
++ include Attributes For Comment Create Or Update
++ include Relationships For Comment Create
+
+## Comment Update Request (object)
++ include Head For Comment
++ include Attributes For Comment Create Or Update
+
+## Comment Response (object)
++ include Head For Comment
++ include Attributes For Comment
++ include Relationships For Comment
+
+## Comments Response (object)
++ comments
+  + data(array[Comment Response], required)
++ included(array[Comment User Mention Response])
+
+## Related Comments (object)
++ comments
+  + data(array[Head For Comment])
+
+## Comment User Mention (object)
++ indices : 'Debug'
++ username : 'Username' (string, required)
+
+## Head For Comment User Mention (object)
++ id `1` (string)
++ type `comment_user_mentions` (string)
+
+## Attributes For Comment User Mention (object)
++ attributes: (Comment User Mention, required)
+
+## Relationships For Comment User Mention (object)
++ relationships
+  + include Related Users
+  + include Related Comments
+
+## Comment User Mention Response (object)
++ include Head For Comment User Mention
++ include Attributes For Comment User Mention
++ include Relationships For Comment User Mention
+
+## Related Comment User Mentions (object)
++ comment_user_mentions
+  + data(array[Head For Comment User Mention], required)
+
 ## Creation Conflict Response (object)
 + title: `Conflict` (string)
 
@@ -284,6 +434,14 @@ Exchange credentials for `access_token`.
 ## Organizations Relationship (object)
 + id: 1 (string)
 + type: organizations (string)
+
+## Head For Post
++ id: `1` (string, required)
++ type: `posts` (string, required)
+
+## Related Posts (object)
++ posts:
+  + data(array[Head For Post], required)
 
 ## Preview (object)
 + body: `<p>A <strong>strong</strong> preview</p>` (string)
@@ -368,6 +526,14 @@ Exchange credentials for `access_token`.
   + attributes(User, required)
   + relationships(User Relationships Base, required)
 
+## Head For User (object)
++ id: `1` (string)
++ type: `users` (string)
+
+## Related Users (object)
++ users
+  + data(array[Head For User])
+
 ## User Roles Relationship (object)
 + id: 1 (string)
 + type: user_roles (string)
@@ -381,5 +547,8 @@ Exchange credentials for `access_token`.
 + type: user_skills (string)
 
 ## User Skills Relationships (object)
-+ user_skills
-  + data(array[User Skills Relationship], required)
++ user_skills: data(array[User Skills Relationship], required)
+
+## Id Filter (object)
++ filter:
+  + id: `1,2,3,...` (string, required)
