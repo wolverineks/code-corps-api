@@ -200,6 +200,70 @@ Exchange credentials for `access_token`.
 
 # Group Skills
 
+## Skill [/skills]
+
+### Create a skill [POST]
+
++ Request
+
+  + Attributes (OAuth Grant Request)
+
++ Headers
+
+  Authorization: Bearer {access_token}
+
++ Response 200 (application/vnd.api+json)
+
+  + Attributes (Skill Response)
+
++ Response 401 (application/json)
+
+  + Attributes (OAuth Invalid Response)
+
++ Response 403 (application/json)
+
+  + Attributes (Forbidden Response)
+
++ Response 422 (application/vnd.api+json)
+
+  + Attributes (Unprocessable Entity Response)
+
+## Skill [/skills/{id}]
+
+### Retrieve a skill [GET]
+
++ Request
+
+  + Attributes (OAuth Grant Request)
+
++ Headers
+
+  Authorization: Bearer <access_token>
+
++ Response 200 (application/vnd.api+json)
+
+  + Attributes (Skill Response)
+
++ Response 404 (application/vnd.api+json)
+
+  + Attributes (Record Not Found Response)
+
+## Skills [/skills]
+
+### List all skills [GET]
+
++ Request
+
+  + Attributes (OAuth Grant Request)
+
++ Headers
+
+  Authorization: Bearer <access_token>
+
++ Response 200 (application/vnd.api+json)
+
+  + Attributes (Skills Response)
+
 # Group Slugged Routes
 
 # Group User Categories
@@ -297,6 +361,12 @@ Exchange credentials for `access_token`.
 
 + status: 409 (number) - HTTP status code
 
+## Forbidden Response (object)
+
++ title: `Forbidden` (string)
+
++ status: 403 (number) - HTTP status code
+
 ## No Content Response (object)
 
 + title: `No Content` (string)
@@ -374,6 +444,26 @@ Exchange credentials for `access_token`.
 ## Roles Relationship (object)
 + id: 1 (string)
 + type: roles (string)
+
+## Skill Response (object)
++ data(Skill Resource)
+
+## Skills Response (object)
++ data(array[Skill Resource])
+
+## Skill Resource (object)
++ include Skill Resource Identifier
++ attributes
+  + title: `Skill`
+  + description: `This is what the skill is about`
++ relationships
+  + roles
+    + data(array[Roles Relationship])
+    + links
+
+## Skill Resource Identifier (object)
++ id: 1 (string)
++ type: skill (string)
 
 ## Skills Relationship (object)
 + id: 1 (string)
