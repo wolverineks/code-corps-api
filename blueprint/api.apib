@@ -196,6 +196,50 @@ Exchange credentials for `access_token`.
 
 # Group Roles
 
+## Role [/roles]
+
+### Create a role [POST]
+
++ Request
+
+  + Attributes (OAuth Grant Request)
+
++ Headers
+
+  Authorization: Bearer {access_token}
+
++ Response 200 (application/vnd.api+json)
+
+  + Attributes (Role Response)
+
++ Response 401 (application/json)
+
+  + Attributes (OAuth Invalid Response)
+
++ Response 403 (application/json)
+
+  + Attributes (Forbidden Response)
+
++ Response 422 (application/vnd.api+json)
+
+  + Attributes (Unprocessable Entity Response)
+
+## Roles [/roles]
+
+### List all roles [GET]
+
++ Request
+
+  + Attributes (OAuth Grant Request)
+
++ Headers
+
+  Authorization: Bearer <access_token>
+
++ Response 200 (application/vnd.api+json)
+
+  + Attributes (Roles Response)
+
 # Group Role Skills
 
 # Group Skills
@@ -370,6 +414,27 @@ Exchange credentials for `access_token`.
 
 ## Record Not Found Response (object)
 + errors(array[Record Not Found Response Base], required)
+
+## Role Response (object)
++ data(Role Resource)
+
+## Roles Response (object)
++ data(array[Role Resource])
+
+## Role Resource (object)
++ include Role Resource Identifier
++ attributes
+  + name: `Developer`
+  + ability: `Code code code`
+  + kind: `This is a technical role`
++ relationships
+  + skills
+    + data(array[Skills Relationship])
+    + links
+
+## Role Resource Identifier (object)
++ id: 1 (string)
++ type: role (string)
 
 ## Roles Relationship (object)
 + id: 1 (string)
