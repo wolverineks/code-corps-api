@@ -160,7 +160,7 @@ Exchange credentials for `access_token`.
 
 # Group Posts
 
-## Post [/posts]
+## Posts [/posts]
 
 ### Create a post [POST]
 
@@ -179,15 +179,14 @@ Exchange credentials for `access_token`.
 
   + Attributes (Unprocessable Entity Response)
 
-## Post [/posts/{id}]
+### Retrieve a post [GET /posts/{id}]
 
 + Parameters
 
   + id: 1 (number, required)
 
-### Retrieve a post [GET]
-
 + Request
+
   + Attributes (OAuth Grant Request)
 
 + Headers
@@ -202,13 +201,11 @@ Exchange credentials for `access_token`.
 
   + Attributes (Record Not Found Response)
 
-## POST [/posts/{id}]
+### Update a post [PUT /posts/{id}]
 
 + Parameters
 
-  +  id: 1 (number, required)
-
-### Update a post [PUT]
+  + id: 1 (number, required)
 
 + Headers
 
@@ -225,8 +222,6 @@ Exchange credentials for `access_token`.
 + Response 409 (application/vnd.api+json)
 
   + Attributes (Creation Conflict Response)
-
-## Posts [/posts]
 
 ### List all posts [GET]
 
@@ -414,7 +409,7 @@ Exchange credentials for `access_token`.
 
 ## Posts Response (object)
 + posts
-  + data(array[Post], required)
+  + data(array[Post Response], required)
 
 ## Preview (object)
 + body: `<p>A <strong>strong</strong> preview</p>` (string)
