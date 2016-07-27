@@ -37,7 +37,7 @@ Exchange credentials for `access_token`.
 
 # Group Categories
 
-## Category [/categories/new]
+## Categories [/categories]
 
 ### Create a category [POST]
 
@@ -56,9 +56,20 @@ Exchange credentials for `access_token`.
 
   + Attributes (Unprocessable Entity Response)
 
-## Category [/categories/{id}]
+### List all categories [GET]
 
-### Retrieve a category [GET]
+  + Request
+    + Attributes (OAuth Grant Request)
+
+  + Headers
+
+    Authorization: Basic 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
+
+  + Response 200 (application/vnd.api+json)
+
+    + Attributes (Categories Response)
+
+### Retrieve a category [GET /categories/{id}]
 
 + Request
   + Attributes (OAuth Grant Request)
@@ -75,9 +86,7 @@ Exchange credentials for `access_token`.
 
   + Attributes (Record Not Found Response)
 
-## Category [/categories/{id}/edit]
-
-### Update a category [PUT]
+### Update a category [PUT /categories/{id}/edit]
 
 + Request
   + Attributes (OAuth Grant Request)
@@ -98,20 +107,6 @@ Exchange credentials for `access_token`.
 
   + Attributes (Creation Conflict Response)
 
-## Categories [/categories]
-
-### List all categories [GET]
-
-+ Request
-  + Attributes (OAuth Grant Request)
-
-+ Headers
-
-  Authorization: Basic 5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8
-
-+ Response 200 (application/vnd.api+json)
-
-  + Attributes (Categories Response)
 
 # Group Comment Images
 
@@ -200,7 +195,7 @@ Exchange credentials for `access_token`.
 
 # Group Skills
 
-## Skill [/skills]
+## Skills [/skills]
 
 ### Create a skill [POST]
 
@@ -228,9 +223,7 @@ Exchange credentials for `access_token`.
 
   + Attributes (Unprocessable Entity Response)
 
-## Skill [/skills/{id}]
-
-### Retrieve a skill [GET]
+### Retrieve a skill [GET /skills/{id}]
 
 + Request
 
@@ -247,8 +240,6 @@ Exchange credentials for `access_token`.
 + Response 404 (application/vnd.api+json)
 
   + Attributes (Record Not Found Response)
-
-## Skills [/skills]
 
 ### List all skills [GET]
 
@@ -454,8 +445,8 @@ Exchange credentials for `access_token`.
 ## Skill Resource (object)
 + include Skill Resource Identifier
 + attributes
-  + title: `Skill`
-  + description: `This is what the skill is about`
+  + title: `Elixir`
+  + description: `Elixir is a functional, concurrent, general-purpose programming language that runs on the Erlang virtual machine (BEAM).`
 + relationships
   + roles
     + data(array[Roles Relationship])
